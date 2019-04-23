@@ -11,6 +11,13 @@ Data analysis of Airbnb Los Angeles data
 
 ## Project Motivation
 
+
+For this project, I was interested in using Airbnb Los Angeles data to better understand
+-  What factors effect price of the unit?
+-  Does the price change based on season?
+-  What factors effect occupancy ratio(days_occupied/total_days) of the unit?
+-  What factors effect review score of the unit?
+
 I was interested in Los Angeles Airbnb data to see what contributes to and predicts price, occupancy ratio(days_occupied/total_days), and review score.  In 2017, Los Angeles was home to over 4 million people and consists of a diverse range of socioeconomic levels.
 
 ## File Descriptions
