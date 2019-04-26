@@ -1,0 +1,200 @@
+---
+title: "Airbnb LA data"
+author: "Ryan Mezera"
+date: "April 24, 2019"
+output: html_document
+---
+# Airbnb LA Data Analysis
+
+Here we will do some data analysis for the Airbnb LA data.  The primary goal will be to make some graphics to be used in a presentation.
+
+
+```{r setup}
+df = read.csv('df_final.csv')
+
+df_stats = read.csv('daily_stats.csv')
+```
+
+```{r packages}
+library(GGally)
+library(ggplot2)
+library(gridExtra)
+```
+
+## Price
+
+```{r}
+
+ggplot(data = df,
+       aes(x = price))+
+  geom_histogram(bins = 30)+
+  labs(title='Price Distribution')
+
+```
+
+```{r}
+summary(df$price)
+```
+
+
+```{r}
+  #Boxplot
+ggplot(data = df,
+       aes( x = 1, y = price) ) + 
+  geom_jitter(alpha = 0.3 ) +
+  geom_boxplot(alpha = 0.2, color = 'red' )
+```
+
+```{r}
+cities_high = c('Malibu', 'Hawthorne', 'Santa Monica', 'Manhattan Beach', 'Torrance', 'Culver City', 'Venice', 'Alhambra')
+cities_low = c('Redondo Beach', 'Altadena', 'Burbank', 'Topanga', 'San Gabriel','Monterey Park', 'Glandale', 'Temple City', 'Inglewood')
+
+```
+
+```{r}
+  #Bivariate boxplot with quality as factor
+ggplot(aes(city, 
+           price), 
+       data = df[df$city==cities_low,]) +
+  geom_jitter( alpha = .3)  +
+  geom_boxplot( alpha = .5,color = 'blue')+
+  stat_summary(fun.y = "mean", 
+               geom = "point", 
+               color = "red", 
+               shape = 8, 
+               size = 4)+
+  ylim(0,1000)+
+  xlab('City')+
+  ylab('Price')+
+  labs(title='Low Price Cities')+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+
+```{r}
+  #Bivariate boxplot with quality as factor
+ggplot(aes(city,price), 
+       data = df[df$city==cities_high,]) +
+  geom_jitter( alpha = .3)  +
+  geom_boxplot( alpha = .5,color = 'blue')+
+  stat_summary(fun.y = "mean", 
+               geom = "point", 
+               color = "red", 
+               shape = 8, 
+               size = 4)+
+  ylim(0,1000)+
+  xlab('City')+
+  ylab('Price')+
+  labs(title='High Price Cities')+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+
+```{r}
+
+ggplot(data = df_stats, aes(x=X,y=as.integer(X50th)))+
+  geom_point()+
+  xlab('Days')+
+  ylab('Median Price')+
+  ylim(100,180)
+
+```
+
+
+```{r}
+ggplot(data = df_stats, aes(x=X,y=as.integer(Mean)))+
+  geom_point()+
+  xlab('Days')+
+  ylab('Mean Price')+
+  ylim(100,180)
+```
+
+
+
+# Occupancy ratio
+
+```{r}
+ggplot(data = df,
+       aes(x = occupancy_ratio))+
+  geom_histogram(bins = 30)+
+  labs(title='Occupancy Ratio Distribution')
+```
+
+
+
+# Review scores
+
+```{r}
+ggplot(data = df,
+       aes(x = review_scores_rating))+
+  geom_histogram(bins = 30)+
+  labs(title='Review Score Rating Distribution')
+```
+
+
+```{r}
+ggplot(data = df,
+       aes(y=review_scores_rating,x=host_listings_count))+
+  geom_point(alpha = 0.1)+ 
+    ggtitle("Review Scores Rating vs Host Listings Count")+
+    xlab('Host Listings Count')+
+    ylab('Review Scores Ratings')
+```
+
+
+
+```{r}
+ggplot(data = df,
+       aes(y=occupancy_ratio,x=host_listings_count))+
+  geom_point(alpha = 0.1)+ 
+    ggtitle('Occupancy Ratio vs Host Listings Counts')+
+    xlab('Host Listings Counts')+
+    ylab('Occupancy Ratio')
+```
+
+
+
+```{r}
+  #Bivariate boxplot with quality as factor
+ggplot(aes(city,price), 
+       data = df[df$city==c('West Hollywood','Santa Monica'),]) +
+  geom_jitter( alpha = .3)  +
+  geom_boxplot( alpha = .5,color = 'blue')+
+  stat_summary(fun.y = "mean", 
+               geom = "point", 
+               color = "red", 
+               shape = 8, 
+               size = 4)+
+  ylim(0,1000)+
+  xlab('City')+
+  ylab('Price')+
+  labs(title='High Price Cities')+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+```{r}
+summary(df[df$city=='Santa Monica',]$review_scores_rating)
+```
+
+
+```{r}
+summary(df[df$city=='West Hollywood',]$review_scores_rating)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

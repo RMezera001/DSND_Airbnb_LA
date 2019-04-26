@@ -28,6 +28,7 @@ I was interested in Los Angeles Airbnb data to see what contributes to and predi
 
 ## Results
 
+The results of my analysis can be seen in a post on 'Medium' https://medium.com/@ryanmezera/airbnb-los-angeles-a-look-into-the-data-a436f6905ee6
 
 ## Author
 
