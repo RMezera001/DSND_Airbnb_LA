@@ -12441,7 +12441,7 @@ dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Listing-Imputing-Data">Listing Imputing Data<a class="anchor-link" href="#Listing-Imputing-Data">&#182;</a></h3><p>Depending on the data we will impute missing values using mean and mode.</p>
+<h3 id="Missing-Values">Missing Values<a class="anchor-link" href="#Missing-Values">&#182;</a></h3><p>Depending on the data we will impute missing values using mean and mode.</p>
 <ul>
 <li>Mean: 'security_deposit', 'cleaning_fee'</li>
 <li>Mode: 'host_since', 'host_location', 'host_is_superhost', 'host_thumbnail_url', 'host_neighbourhood', 'host_listings_count', 'host_total_listings_count', 'host_has_profile_pic', 'host_identity_verified', 'neighbourhood', 'city', 'zipcode', 'market', 'host_reponse_time', 'host_reponse_rate', 'bathrooms', 'beds', 'reviews_per_month'</li>
@@ -13884,7 +13884,7 @@ dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Listing-imputing-data">Listing imputing data<a class="anchor-link" href="#Listing-imputing-data">&#182;</a></h5><p>Filling null data with be done using mean and mode for most of the columns as follows.</p>
+<h4 id="Missing-data">Missing data<a class="anchor-link" href="#Missing-data">&#182;</a></h4><p>Filling null data with be done using mean and mode for most of the columns as follows.</p>
 <ul>
 <li>Mean: 'security_deposit', 'cleaning_fee'</li>
 <li>Mode: 'host_since', 'host_location', 'host_is_superhost', 'host_thumbnail_url', 'host_neighbourhood', 'host_listings_count', 'host_total_listings_count', 'host_has_profile_pic', 'host_identity_verified', 'neighbourhood', 'city', 'zipcode', 'market', 'host_reponse_time', 'host_reponse_rate', 'bathrooms', 'beds', 'reviews_per_month'</li>
@@ -14498,7 +14498,7 @@ Name: host_since_days, dtype: int64</pre>
 <li>Remove <code>listing_id</code> once combined</li>
 <li>Split into <code>X</code> and <code>y</code> dataframe and series to use in modeling</li>
 <li>Split <code>X</code> into numeric and object columns</li>
-<li>Use pd.getdummies() on object columns</li>
+<li>Use pd.getdummies() on object columns in preparation for modeling</li>
 </ul>
 
 </div>
@@ -14995,7 +14995,13 @@ Name: host_since_days, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Analysis">Analysis<a class="anchor-link" href="#Analysis">&#182;</a></h1><p>Here we will analyze price, occupancy ratio, and review_scores_value to see what we can find out about them.</p>
+<h1 id="Analysis">Analysis<a class="anchor-link" href="#Analysis">&#182;</a></h1><p>Here we will analyze price, occupancy ratio, and review_scores_value to see what we can find out and try to answer the following questions.</p>
+<ul>
+<li>What factors contribute to and predict price of the unit?</li>
+<li>Does the price change based on season?</li>
+<li>What factors contribute to and predict occupancy ratio of the unit?</li>
+<li>What factors contribute to and predict review score of the unit?</li>
+</ul>
 <h3 id="Price">Price<a class="anchor-link" href="#Price">&#182;</a></h3>
 </div>
 </div>
@@ -15581,7 +15587,8 @@ Name: review_scores_rating, dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">corr</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Additional correlation matrix to see if there is anything we may have missed</span>
+<span class="n">corr</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
